@@ -36,8 +36,41 @@ function displayStudents() {
             <td>${student.id}</td>
             <td>${student.course}</td>
             <td>${student.grade}</td>
-        `;
+            <td>
+                <button onclick="editStudent(${students.indexOf(student)})">Edit</button>
+                <button onclick="deleteStudent(${students.indexOf(student)})">Delete</button>
+            </td>
+            `;
 
         tableBody.appendChild(row);
     });
+}
+
+function editStudent(index) {
+    const student = students[index];
+
+    const newName = prompt("Enter student name:", student.name);
+    const newId = prompt("Enter student ID:", student.id);
+    const newCourse = prompt("Enter course:", student.course);
+    const newGrade = prompt("Enter grade:", student.grade);
+
+    if (newName && newId && newCourse && newGrade) {
+        students[index] = {
+            name: newName,
+            id: newId,
+            course: newCourse,
+            grade: newGrade
+        };
+
+        displayStudents();
+    }
+}
+
+function deleteStudent(index) {
+    const confirmed = confirm("Are you sure you want to delete this student?");
+
+    if (confirmed) {
+        students.splice(index, 1);
+        displayStudents();
+    }
 }

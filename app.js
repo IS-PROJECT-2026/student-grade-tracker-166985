@@ -71,6 +71,17 @@ function deleteStudent(index) {
 
     if (confirmed) {
         students.splice(index, 1);
-        displayStudents();
+
+        if (students.length === 0) {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="5" style="text-align: center;">
+                        No students added yet
+                    </td>
+                </tr>
+            `;
+        } else {
+            displayStudents();
+        }
     }
 }

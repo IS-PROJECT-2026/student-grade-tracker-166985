@@ -2,6 +2,7 @@ let students = [];
 
 const form = document.getElementById("addStudentForm");
 const tableBody = document.getElementById("studentTableBody");
+const searchInput = document.getElementById("searchStudent");
 
 function validateStudent(name, id, course, grade) {
     if (name.trim() === "") {
@@ -145,3 +146,31 @@ function deleteStudent(index) {
         }
     }
 }
+
+searchInput.addEventListener("input", function() {
+    const searchTerm = searchInput.value.toLowerCase();
+
+    const filteredStudents = students.filter(function(student) {
+        return student.name.toLowerCase().includes(searchTerm) ||
+               student.id.toLowerCase().includes(searchTerm);
+    });
+
+    tableBody.innerHTML = "";
+
+    filteredStudents.forEach(function(student) {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${student.name}</td>
+            <td>${student.id}</td>
+            <td>${student.course}</td>
+            <td>${student.grade}</td>
+            <td>
+                <button onclick="editStudent(${students.indexOf(student)})">Edit</button>
+                <button onclick="deleteStudent(${students.indexOf(student)})">Delete</button>
+            </td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+});

@@ -79,6 +79,31 @@ function displayStudents() {
 
         tableBody.appendChild(row);
     });
+
+    updateStatistics();
+}
+
+function updateStatistics() {
+    const total = students.length;
+
+    if (total === 0) {
+        document.getElementById("totalStudents").textContent = "0";
+        document.getElementById("averageGrade").textContent = "0%";
+        document.getElementById("highestGrade").textContent = "0%";
+        document.getElementById("lowestGrade").textContent = "0%";
+        return;
+    }
+
+    const grades = students.map(student => Number(student.grade));
+
+    const average = grades.reduce((sum, grade) => sum + grade, 0) / total;
+    const highest = Math.max(...grades);
+    const lowest = Math.min(...grades);
+
+    document.getElementById("totalStudents").textContent = total;
+    document.getElementById("averageGrade").textContent = average.toFixed(2) + "%";
+    document.getElementById("highestGrade").textContent = highest + "%";
+    document.getElementById("lowestGrade").textContent = lowest + "%";
 }
 
 function editStudent(index) {

@@ -3,6 +3,7 @@ let students = [];
 const form = document.getElementById("addStudentForm");
 const tableBody = document.getElementById("studentTableBody");
 const searchInput = document.getElementById("searchStudent");
+const gradeFilter = document.getElementById("gradeFilter");
 
 function validateStudent(name, id, course, grade) {
     if (name.trim() === "") {
@@ -147,15 +148,42 @@ function deleteStudent(index) {
     }
 }
 
-searchInput.addEventListener("input", function() {
+function filterStudents() {
     const searchTerm = searchInput.value.toLowerCase();
+    const selectedGrade = gradeFilter.value;
 
     const filteredStudents = students.filter(function(student) {
-        return student.name.toLowerCase().includes(searchTerm) ||
-               student.id.toLowerCase().includes(searchTerm);
+        const matchesSearch =
+            student.name.toLowerCase().includes(searchTerm) ||
+            student.id.toLowerCase().includes(searchTerm);
+
+        const grade = Number(student.grade);
+
+        let matchesGrade = true;
+
+        if (selectedGrade === "70") {
+            matchesGrade = grade >= 70;
+        } else if (selectedGrade === "60") {
+            matchesGrade = grade >= 60 && grade < 70;
+        } else if (selectedGrade === "below60") {
+            matchesGrade = grade < 60;
+        }
+
+        return matchesSearch && matchesGrade;
     });
 
     tableBody.innerHTML = "";
+
+    if (filteredStudents.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align: center;">
+                    No matching students found
+                </td>
+            </tr>
+        `;
+        return;
+    }
 
     filteredStudents.forEach(function(student) {
         const row = document.createElement("tr");
@@ -173,4 +201,8 @@ searchInput.addEventListener("input", function() {
 
         tableBody.appendChild(row);
     });
-});
+}
+
+searchInput.addEventListener("input", filterStudents);
+
+gradeFilter.addEventListener("change", filterStudents);

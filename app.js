@@ -3,6 +3,37 @@ let students = [];
 const form = document.getElementById("addStudentForm");
 const tableBody = document.getElementById("studentTableBody");
 
+function validateStudent(name, id, course, grade) {
+    if (name.trim() === "") {
+        alert("Student name is required.");
+        return false;
+    }
+
+    if (id.trim() === "") {
+        alert("Student ID is required.");
+        return false;
+    }
+
+    if (!/^[A-Za-z0-9-]+$/.test(id.trim())) {
+        alert("Student ID can only contain letters, numbers, and hyphens.");
+        return false;
+    }
+
+    if (course.trim() === "") {
+        alert("Course name is required.");
+        return false;
+    }
+
+    const numericGrade = Number(grade);
+
+    if (grade === "" || isNaN(numericGrade) || numericGrade < 0 || numericGrade > 100) {
+        alert("Grade must be a number between 0 and 100.");
+        return false;
+    }
+
+    return true;
+}
+
 form.addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -10,6 +41,10 @@ form.addEventListener("submit", function(event) {
     const id = document.getElementById("studentId").value;
     const course = document.getElementById("courseName").value;
     const grade = document.getElementById("grade").value;
+
+    if (!validateStudent(name, id, course, grade)) {
+        return;
+    }
 
     const student = {
         name: name,
@@ -54,7 +89,7 @@ function editStudent(index) {
     const newCourse = prompt("Enter course:", student.course);
     const newGrade = prompt("Enter grade:", student.grade);
 
-    if (newName && newId && newCourse && newGrade) {
+    if (validateStudent(newName, newId, newCourse, newGrade)) {
         students[index] = {
             name: newName,
             id: newId,

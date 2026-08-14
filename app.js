@@ -1,4 +1,4 @@
-let students = [];
+let students = JSON.parse(localStorage.getItem("students")) || [];
 
 const form = document.getElementById("addStudentForm");
 const tableBody = document.getElementById("studentTableBody");
@@ -56,6 +56,8 @@ form.addEventListener("submit", function(event) {
     };
 
     students.push(student);
+
+    localStorage.setItem("students", JSON.stringify(students));
 
     displayStudents();
 
@@ -124,6 +126,8 @@ function editStudent(index) {
             grade: newGrade
         };
 
+        localStorage.setItem("students", JSON.stringify(students));
+
         displayStudents();
     }
 }
@@ -133,6 +137,7 @@ function deleteStudent(index) {
 
     if (confirmed) {
         students.splice(index, 1);
+        localStorage.setItem("students", JSON.stringify(students));
 
         if (students.length === 0) {
             tableBody.innerHTML = `
@@ -226,3 +231,5 @@ exportButton.addEventListener("click", function() {
 
     URL.revokeObjectURL(url);
 });
+
+displayStudents();

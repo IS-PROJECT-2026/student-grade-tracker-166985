@@ -206,3 +206,23 @@ function filterStudents() {
 searchInput.addEventListener("input", filterStudents);
 
 gradeFilter.addEventListener("change", filterStudents);
+
+const exportButton = document.getElementById("exportJson");
+
+exportButton.addEventListener("click", function() {
+    const data = JSON.stringify(students, null, 2);
+
+    const blob = new Blob([data], {
+        type: "application/json"
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "students.json";
+
+    link.click();
+
+    URL.revokeObjectURL(url);
+});

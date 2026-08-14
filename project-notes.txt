@@ -1,0 +1,2 @@
+Student Grade Tracker
+Development notes for the project.

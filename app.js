@@ -1,4 +1,42 @@
-let students = JSON.parse(localStorage.getItem("students")) || [];
+const defaultStudents = [
+    {
+        name: "Alice Johnson",
+        id: "ST001",
+        course: "Computer Science",
+        grade: 85
+    },
+    {
+        name: "Brian Smith",
+        id: "ST002",
+        course: "Information Systems",
+        grade: 72
+    },
+    {
+        name: "Carol Williams",
+        id: "ST003",
+        course: "Data Science",
+        grade: 91
+    },
+    {
+        name: "David Brown",
+        id: "ST004",
+        course: "Software Engineering",
+        grade: 64
+    },
+    {
+        name: "Emma Davis",
+        id: "ST005",
+        course: "Computer Science",
+        grade: 48
+    }
+];
+
+let students = JSON.parse(localStorage.getItem("students"));
+
+if (students === null) {
+    students = defaultStudents;
+    localStorage.setItem("students", JSON.stringify(students));
+}
 
 const form = document.getElementById("addStudentForm");
 const tableBody = document.getElementById("studentTableBody");

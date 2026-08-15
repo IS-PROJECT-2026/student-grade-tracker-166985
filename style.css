@@ -1,0 +1,253 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+    line-height: 1.6;
+    padding: 30px;
+}
+
+/* Main page container */
+body > h1,
+body > h2,
+body > form,
+body > p,
+body > label,
+body > input,
+body > select,
+body > table,
+body > button {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Header */
+h1 {
+    background: #1e3a8a;
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+h2 {
+    max-width: 1100px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #1e3a8a;
+    font-size: 22px;
+}
+
+/* Add Student Form */
+form {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #374151;
+}
+
+input,
+select {
+    font-family: inherit;
+    font-size: 15px;
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+form input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* General buttons */
+button {
+    border: none;
+    border-radius: 7px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+form button {
+    background: #2563eb;
+    color: white;
+    margin-top: 5px;
+}
+
+/* Statistics */
+body > p {
+    display: inline-block;
+    width: 250px;
+    margin: 5px 10px 5px 0;
+    padding: 18px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    font-size: 15px;
+}
+
+body > p strong {
+    display: block;
+    margin-top: 5px;
+    font-size: 24px;
+    color: #2563eb;
+}
+
+/* Search and filter */
+#searchStudent {
+    width: 500px;
+    max-width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    outline: none;
+}
+
+#searchStudent:focus {
+    border-color: #2563eb;
+}
+
+#gradeFilter {
+    padding: 11px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    margin-left: 10px;
+    background: white;
+}
+
+/* Student table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+th {
+    background: #1e3a8a;
+    color: white;
+    padding: 14px;
+    text-align: left;
+}
+
+td {
+    padding: 13px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+tr:hover {
+    background: #f1f5f9;
+}
+
+/* Edit and Delete buttons */
+td button:first-child {
+    background: #f59e0b;
+    color: white;
+}
+
+td button:last-child {
+    background: #dc2626;
+    color: white;
+}
+
+/* Export section */
+#exportJson {
+    background: #059669;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+
+    body > p {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    #searchStudent {
+        width: 100%;
+    }
+
+    #gradeFilter {
+        width: 100%;
+        margin: 10px 0 0;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th,
+    td {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 21px;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    td button {
+        width: auto;
+    }
+}
